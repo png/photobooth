@@ -6,8 +6,6 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
-  RefObject, // Still needed for canvasRef
-  MutableRefObject, // No longer needed for cameraCapturing
 } from 'react';
 import { Camera } from 'web-gphoto2';
 
@@ -236,6 +234,60 @@ function IntroHeader() {
   return <h1>Camera Control</h1>;
 }
 
+// --- Countdown Component ---
+function CountdownComponent() {
+  enum CountdownStateEnum {
+    Clear,
+    Three,
+    Two,
+    One,
+    Cheese,
+  };
+  const [countdownStateVal, setCountdownStateVal] = useState(CountdownStateEnum.Clear);
+
+  async function progressStateMachine() {
+    await new Promise(r => setTimeout(r, 1000));
+    setCountdownStateVal(countdownStateVal+1);
+  }
+
+  async function resetStateMachine() {
+    await new Promise(r => setTimeout(r, 1000));
+    setCountdownStateVal(CountdownStateEnum.Clear);
+  }
+
+  useEffect(() => {
+
+  }, [countdownStateVal]);
+
+  switch (countdownStateVal) {
+    case CountdownStateEnum.Clear:
+      progressStateMachine();
+      return <text></text>
+      break;
+    case CountdownStateEnum.Three:
+      progressStateMachine();
+      return <text>3</text>
+      break;
+    case CountdownStateEnum.Two:
+      progressStateMachine();
+      return <text>2</text>
+      break;
+    case CountdownStateEnum.One:
+      progressStateMachine();
+      return <text>1</text>
+      break;
+    case CountdownStateEnum.Cheese:
+      resetStateMachine();
+      return <text>Cheese!</text>
+      break;
+    
+    default:
+
+      return <text>Wtf?</text>
+      break;
+  }
+}
+
 // --- Main Page Component (Using useState for isCapturing) ---
 export default function Home() {
   // Use state for camera instance to ensure it's stable across renders
@@ -254,10 +306,8 @@ export default function Home() {
 
     // Cleanup on unmount
     return () => {
-      if (cam.isConnected()) {
-        console.log("Disconnecting camera on component unmount...");
-        cam.disconnect().catch(err => console.error("Error disconnecting camera:", err));
-      }
+        // console.log("Disconnecting camera on component unmount...");
+        // cam.disconnect().catch(err => console.error("Error disconnecting camera:", err));
        setCamera(null); // Clear camera instance
        setCameraReady(false); // Reset ready state
     };
@@ -332,6 +382,7 @@ export default function Home() {
           <h2>Captured Image</h2>
           <CapturedImageDisplay capturedImageBlob={capturedImageBlob} />
         </div>
+        <CountdownComponent />
       </div>
     </>
   );
