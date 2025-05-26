@@ -24,3 +24,76 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 100;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tap-to-start {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none;
+  z-index: 100; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  text-align: center;
+  font-size: 15vh;
+  -webkit-text-stroke: 2px;
+  -webkit-text-stroke-color: white;
+}
+
+.circle {
+  width: 60vh;
+  height: 60vh;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  font-size: 30vh;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+
+.green {
+  background-color: rgb(133, 181, 203);
+  opacity: 50%;
+}
+
+.yellow {
+  background-color: rgb(92, 128, 179);
+  opacity: 50%;
+}
+
+.red {
+  background-color: rgb(51, 83, 159);
+  opacity: 50%;
+}
+
+.countdown-text {
+  text-box: auto;
+  color: white;
+  text-align: center;
+  padding: 25%;
+  -webkit-text-stroke: 2px rgb(0, 0, 0);
+}
+
+.cheese-text {
+  font-size: 10vw;
+}

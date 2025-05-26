@@ -12,6 +12,7 @@
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-to-print": "^3.0.6",
     "web-gphoto2": "^0.4.1"
   },
   "devDependencies": {
