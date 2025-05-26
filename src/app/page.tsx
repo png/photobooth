@@ -15,7 +15,6 @@ import { useReactToPrint } from 'react-to-print';
 // --- Import your custom components ---
 // !! Make sure these files exist and paths are correct !!
 import { ImageGrid } from './ImageGrid';
-import { CapturedImageDisplay } from './CapturedImageDisplay';
 
 // --- Import CSS ---
 import "./globals.css"; // Contains .overlay styles etc.
@@ -269,7 +268,6 @@ export default function Home() {
   const [countdownStateVal, setCountdownStateVal] = useState<CountdownStateEnum>(CountdownStateEnum.Clear);
   const [capturedImageBlobs, setCapturedImageBlobs] = useState<Blob[]>([]);
   const [capturesCompleted, setCapturesCompleted] = useState<number>(0);
-  const [previewVisibility, setPreviewVisibility] = useState<boolean>(false);
 
   // Configuration
   const totalCapturesNeeded = 3;
@@ -286,11 +284,9 @@ export default function Home() {
     setCapturedImageBlobs([]);
     setCapturesCompleted(0);
     setCountdownStateVal(CountdownStateEnum.Clear);
-    setPreviewVisibility(false);
   }, []); // No dependencies needed for reset logic
 
   function handlePreviewRender(): Promise<void> {
-    setPreviewVisibility(true);
     // Give time for preview to render.
     return new Promise((resolve) => {
       setTimeout(resolve, 500);
@@ -425,7 +421,6 @@ export default function Home() {
       <ImageGrid
         ref={gridRef} // Pass the ref here
         capturedBlobs={capturedImageBlobs}
-        previewVisibility={previewVisibility}
       /> }
     </div>
   );

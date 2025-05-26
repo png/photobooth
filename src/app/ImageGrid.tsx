@@ -5,12 +5,11 @@ import { CapturedImageDisplay } from './CapturedImageDisplay';
 
 interface ImageGridProps {
   capturedBlobs: Blob[];
-  previewVisibility: boolean;
 }
 
 // Use React.forwardRef to allow passing a ref to the underlying DOM element
 export const ImageGrid = React.forwardRef<HTMLDivElement, ImageGridProps>(
-  ({ capturedBlobs, previewVisibility }, ref) => {
+  ({ capturedBlobs }, ref) => {
 
     // Helper function to get grid position styles based on image index
     const getGridPositionStyle = (index: number): React.CSSProperties => {
